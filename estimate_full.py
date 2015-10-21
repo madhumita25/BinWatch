@@ -32,7 +32,7 @@ time = (100 - fill[i-1])/rate;
 
 predicted_timestamp = timestamp[i-1] + time;
 
-print (predicted_timestamp)
+print ("Bin will be full at:", predicted_timestamp)
 
 #current_timestamp = timestamp = datetime.datetime.utcnow().timestamp();
 #if predicted_timestamp <  current_timestamp:
