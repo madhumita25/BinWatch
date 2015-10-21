@@ -42,15 +42,16 @@ def estimate_fill1(binId, threshold):
 
 #listFile = "/Users/bharde/BinWatch/BinWatch/bin_list.csv"
 listFile = sys.argv[1];
+
 min_time = 1443493164;
 #min_time = now;
-i = 0;
+
 threshold = 90;
 
 with open(listFile, 'r') as dbFile:
     lines = dbFile.readlines()
     for row in lines:
-        print(row);
+        #print(row);
         time = estimate_fill1(row.rstrip(), threshold)
         if time < min_time:
             min_time = time;
