@@ -9,12 +9,31 @@ import json
 
 #DBFile = "/Users/bharde/BinWatch/BinWatch/52f573800000000000000000.csv"
 DBFile = sys.argv[1]
-weight = [1,2,3,4]
+
 rate = 0;
 sum_weight = 0;
-fill = [0] * 10;
-timestamp = [0] * 10;
 i = 0;
+
+#stores fill levels for 5 recent records
+fill = [0] * 10;
+
+#stores timestamps for 5 recent records
+timestamp = [0] * 10;
+
+#Weight matrix
+weight = [1,2,3,4]
+
+# To calculate estimated time when the bin will be full:
+#------------------------------------------------------
+# 1. Calculate fill rate for consecutive records
+#      rate_i = (diff between fill levels)/(diff between timestamp)
+#
+# 2. Calculate effective fill rate: Take weighted sum of fill rates by giving more importance to recent records:
+#      rate = sum( weight_i * rate_i)/ sum(weight_i)
+#
+# 3. With this rate, find out when bin will be 100% full.
+#
+# 4. If this timestamp is lesser than now(), Give now() as output
 
 with open(DBFile, newline='') as f:
     reader = csv.reader(f, delimiter=',')
